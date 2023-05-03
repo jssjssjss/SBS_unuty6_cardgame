@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sutda-Program", "Sutda-Program.csproj", "{1BDF2060-044B-4504-932C-A0755C79BD4B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{007F9098-7F18-40E2-8627-070CE2F2A61A}"
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{6C425545-1F5C-E8A1-9C4D-598848433F29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BDF2060-044B-4504-932C-A0755C79BD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BDF2060-044B-4504-932C-A0755C79BD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BDF2060-044B-4504-932C-A0755C79BD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BDF2060-044B-4504-932C-A0755C79BD4B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{007F9098-7F18-40E2-8627-070CE2F2A61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{007F9098-7F18-40E2-8627-070CE2F2A61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{007F9098-7F18-40E2-8627-070CE2F2A61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{007F9098-7F18-40E2-8627-070CE2F2A61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C425545-1F5C-E8A1-9C4D-598848433F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C425545-1F5C-E8A1-9C4D-598848433F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C425545-1F5C-E8A1-9C4D-598848433F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C425545-1F5C-E8A1-9C4D-598848433F29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3525AC1F-2A28-44AD-8974-174576E9454F}
 	EndGlobalSection
 EndGlobal
