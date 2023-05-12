@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.UI; //ui ºÒ·¯¿À±â
 
 public class GameManager : MonoBehaviour
 {
@@ -19,12 +21,20 @@ public class GameManager : MonoBehaviour
     List<string> ddang_kill = new List<string>() { "cg", "cG", "Cg", "CG" };                             //‹¯ÀâÀÌ
     List<string> ggang = new List<string>() { "AC", "AH" };                                              //±¤
     List<string> ggang_kill = new List<string>() { "DG" };                                               //±¤ÀâÀÌ .¾ÏÇà¾î»ç
-
+    List<string> player_card_name = new List<string>();
 
 
     public GameObject[] card;
     public GameObject[] target;
-    public Sprite[] my_sprite = new Sprite[20];
+    public Sprite[] my_sprite = new Sprite[21];
+    public Sprite[] text_sprite= new Sprite[21];
+
+    public Text info_text;
+    public Text info_text2;
+    public Text info_text3;
+    public Text info_text4;
+    public Text info_text5;
+    public Text info_text6;
 
     float timer = 0;
     float test_timer = 0;
@@ -36,7 +46,7 @@ public class GameManager : MonoBehaviour
     bool isGGang = false;
     bool isGGang_kill = false;
 
-
+   
     string[] deck = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
                   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
@@ -64,48 +74,138 @@ public class GameManager : MonoBehaviour
             {"a",1 },{"A",1 },{"b",2 },{"B",2 },{"c",3 },{"C",3 },{"d",4 },{"D",4 },{"e",5 },{"E",5 },
             {"f",6 },{"F",6 },{"g",7 },{"G",7 },{"h",8 },{"H",8 },{"i",9 },{"I",9 },{"j",10 },{"J",10 },
      };
+    Dictionary<string, string> jokbo_name = new Dictionary<string, string>()
+    {
+          { "CH","38±¤‹¯"},               //38±¤¶¯
+            { "AC","13±¤‹¯"},{ "AH","18±¤‹¯"},   //13,18 ±¤‹¯
+        {"aA","1¶¯" },{ "bB", "2¶¯" },{ "cC", "3¶¯" },{ "dD", "4¶¯" },{ "eE", "5‹¯" },{ "fF", "6¶¯" },{ "gG", "7¶¯" },{ "hH", "8‹¯" },{ "iI", "9¶¯" },{ "jJ", "10¶¯" },
 
+            { "ab","¾Ë¸®"},{ "aB","¾Ë¸®"},{ "Ab","¾Ë¸®"},{ "AB","¾Ë¸®"}, //¾Ë¸®  1,2
+            { "ad","µ¶»ç"},{ "aD","µ¶»ç"},{ "Ad","µ¶»ç"},{ "AD","µ¶»ç"}, //µ¶»ç  1,4
+            { "ai","±¸»æ"},{ "aI","±¸»æ"},{ "Ai","±¸»æ"},{ "AI","±¸»æ"}, //±¸»æ  1,9
+            { "aj","Àå»æ"},{ "aJ","Àå»æ"},{ "Aj","Àå»æ"},{ "AJ","Àå»æ"}, //Àå»æ  1,10
+            { "di","Àå»ç"},{ "dI","Àå»ç"},{ "Di","Àå»ç"},{ "DI","Àå»ç"}, //Àå»ç  4,10
+            { "df","¼¼·ú"},{ "dF","¼¼·ú"},{ "Df","¼¼·ú"},{ "DF","¼¼·ú"}, //¼¼·ú
+            { "cg","‹¯ÀâÀÌ"},{ "cG","‹¯ÀâÀÌ"},{ "Cg","‹¯ÀâÀÌ"},{ "CG","‹¯ÀâÀÌ"},  //‹¯ÀâÀÌ
+            {"DG","±¤ÀâÀÌ"}                                 //±¤ÀâÀÌ
+
+    };
+
+    Dictionary<int, string> non_jokbo_name = new Dictionary<int, string>()
+    {
+        {0,"¸ÁÅë" },{1,"ÀÏ²ý"},{2,"ÀÌ²ý"},{3,"¼¼²ý"},{4,"³×²ý"},{5,"´Ù¼¸²ý"},{6,"¿©¼¸²ý"},{7,"ÀÏ°ö²ý"},{8,"¿©´ü²ý"},{9,"°©¿À"},
+
+    };
 
 
 
     void Start()
     {
-   
 
-
+        info_text.text = "°ÔÀÓÀ» ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?";
         //for (int i = 0; i < card.Length; i++)
         //{
         //    spriteRenderer[i] = card[i].GetComponent<SpriteRenderer>();
         //    spriteRenderer[i].sprite=my_sprite[i];
         //
         //}
+
+
+
+
+
         for (int i = 0; i < card.Length; i++)
         {
-            spriteRenderer[i] = card[i].GetComponent<SpriteRenderer>(); 
+            spriteRenderer[i] = card[i].GetComponent<SpriteRenderer>();
+
+           
+
+
+
         }
 
-        spriteRenderer[0].sprite = my_sprite[11];
-        spriteRenderer[1].sprite = my_sprite[1];
+        text_sprite[0] = my_sprite[11];
+        text_sprite[1] = my_sprite[1];
 
-        spriteRenderer[2].sprite = my_sprite[2];
+        text_sprite[2] = my_sprite[2];
+        text_sprite[3] = my_sprite[6];
+
+        text_sprite[4] = my_sprite[13];
+        text_sprite[5] = my_sprite[16];
+
+        text_sprite[6] = my_sprite[12];
+        text_sprite[7] = my_sprite[10];
+
         spriteRenderer[3].sprite = my_sprite[6];
-        
-        spriteRenderer[4].sprite = my_sprite[13];
         spriteRenderer[5].sprite = my_sprite[16];
-        
-        spriteRenderer[6].sprite = my_sprite[12];
         spriteRenderer[7].sprite = my_sprite[10];
 
 
+      
+
+        //spriteRenderer[0].sprite = my_sprite[11];
+        //spriteRenderer[1].sprite = my_sprite[1];
+
+        //spriteRenderer[2].sprite = my_sprite[2];
+        //spriteRenderer[3].sprite = my_sprite[20];
+
+        //spriteRenderer[4].sprite = my_sprite[13];
+        //spriteRenderer[5].sprite = my_sprite[20];
+
+        //spriteRenderer[6].sprite = my_sprite[12];
+        //spriteRenderer[7].sprite = my_sprite[20];
+
+       
 
     }
+
+
+
+
 
 
     public void GameStart()
     {
         if (isstart)
         {
+            info_text.text = "¹èÆÃÀ» ÇÏ½Ã°Ú½À´Ï±î?";
+
+            player0.Add(spriteRenderer[0].sprite.name);
+            player0.Add(spriteRenderer[1].sprite.name);
+            player0.Sort();
+            card_list.Add(player0[0] + player0[1]);
+            if (jokbo.ContainsKey(card_list[0]))
+            {
+                player_card_value.Add(jokbo[card_list[0]]);
+
+            }
+            else
+            {
+                player_card_value.Add((non_jokbo[card_list[0][0].ToString()] + non_jokbo[card_list[0][1].ToString()]) % 10);
+            }
+
             isstart = false;
+
+            if (jokbo_name.ContainsKey(card_list[0]))
+            {
+                info_text2.text = jokbo_name[card_list[0]];
+            }
+            else
+            {
+                info_text2.text = non_jokbo_name[player_card_value[0]];
+
+            }
+
+            if (jokbo_name.ContainsKey(card_list[0]))
+            {
+                player_card_name.Add(jokbo_name[card_list[0]]);
+            }
+           else if (non_jokbo_name.ContainsKey(player_card_value[0]))
+            {
+                player_card_name.Add(non_jokbo_name[player_card_value[0]]);
+                
+            }
+
             for (int i = 0; i < card.Length; i++)
             {
                 StartCoroutine(RotateCard(card[i], target[i]));
@@ -144,8 +244,10 @@ public class GameManager : MonoBehaviour
 
             }
 
+           
 
         }
+       
     }
 
     public void CardRotate()
@@ -159,10 +261,17 @@ public class GameManager : MonoBehaviour
     {
         if (isbatting)
         {
-            isbatting=false;
-            player0.Add(spriteRenderer[0].sprite.name);
-            player0.Add(spriteRenderer[1].sprite.name);
-            player0.Sort();
+
+
+
+            spriteRenderer[2].sprite = my_sprite[2];
+            spriteRenderer[4].sprite = my_sprite[13];
+            spriteRenderer[6].sprite = my_sprite[12];
+            isbatting =false;
+
+           
+           
+
 
             computer0.Add(spriteRenderer[2].sprite.name);
             computer0.Add(spriteRenderer[3].sprite.name);
@@ -178,12 +287,11 @@ public class GameManager : MonoBehaviour
 
 
 
-            card_list.Add(player0[0] + player0[1]);
             card_list.Add(computer0[0] + computer0[1]);
             card_list.Add(computer1[0] + computer1[1]);
             card_list.Add(computer2[0] + computer2[1]);
 
-            for (int i = 0; i < card_list.Count; i++)
+            for (int i = 1; i < card_list.Count; i++)
             {
                 if (jokbo.ContainsKey(card_list[i]))
                 {
@@ -263,6 +371,21 @@ public class GameManager : MonoBehaviour
 
             }
 
+            for (int i = 1; i < card_list.Count; i++)
+            {
+                if (jokbo_name.ContainsKey(card_list[i]))
+                {
+                    player_card_name.Add(jokbo_name[card_list[i]]);
+                }
+                else if (non_jokbo_name.ContainsKey(player_card_value[i]))
+                {
+                    player_card_name.Add(non_jokbo_name[player_card_value[i]]);
+
+                }
+
+
+            }
+
             for (int i = 0; i < player_card_value.Count; i++)
             {
                 if (max < player_card_value[i])
@@ -277,11 +400,46 @@ public class GameManager : MonoBehaviour
             Debug.Log("ÃÖ´ë°ª :" + max);
             Debug.Log(max_index + "¹øÂ° ÇÃ·¹ÀÌ¾î");
 
+        }
+        info_text.text = "½ÂÀÚ" + player_card_name[max_index] + max_index + "¹ø¤Š ÇÃ·¹ÀÌ¾î";
 
-          
-
+      
+      
+        if (jokbo_name.ContainsKey(card_list[1]))
+        {
+            info_text4.text = jokbo_name[card_list[1]];
+        }
+        else
+        {
+            info_text4.text = non_jokbo_name[player_card_value[1]];
 
         }
+
+
+        if (jokbo_name.ContainsKey(card_list[2]))
+        {
+            info_text5.text = jokbo_name[card_list[2]];
+        }
+        else
+        {
+            info_text5.text = non_jokbo_name[player_card_value[2]];
+
+        }
+
+        if (jokbo_name.ContainsKey(card_list[3]))
+        {
+            info_text6.text = jokbo_name[card_list[3]];
+        }
+        else
+        {
+            info_text6.text = non_jokbo_name[player_card_value[3]];
+
+        }
+     
+
+
+
+
 
 
     }
