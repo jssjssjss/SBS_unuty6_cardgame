@@ -401,7 +401,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(max_index + "번째 플레이어");
 
         }
-        info_text.text = "승자" + player_card_name[max_index] + max_index + "번쨰 플레이어";
+        info_text.text = "승자" +" " + max_index + "번쨰 플레이어" +" "+ player_card_name[max_index];
 
       
       
