@@ -1,0 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
+
+public class Player : MonoBehaviour
+{
+
+    Rigidbody2D my_rigid;
+    float my_speed = 10;
+    Vector2 inputVec;
+    public GameObject bullet;
+    float st_time = 0;
+    float ed_time = 0.2f;
+    float bullet_speed = 5;
+    public Text score_text;
+    public Text score;
+
+    Enemy enemy;
+    GameObject enenmy_copy;
+
+   
+    int hp = 3;
+
+
+
+    void Start()
+    {
+        
+        my_rigid = GetComponent<Rigidbody2D>();
+   
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        inputVec.x = Input.GetAxisRaw("Horizontal");
+        inputVec.y = Input.GetAxisRaw("Vertical");
+
+
+
+
+        st_time = st_time+Time.deltaTime;
+        if (st_time > ed_time)
+        {
+           
+            
+            GameObject bullet_copy = Instantiate(bullet, transform.position, transform.rotation);
+            Rigidbody2D bullet_rigid = bullet_copy.GetComponent<Rigidbody2D>();
+            bullet_rigid.AddForce(Vector2.up * bullet_speed, ForceMode2D.Impulse);
+
+            st_time = 0;
+        }
+
+        
+
+
+
+
+    }
+
+
+
+    private void FixedUpdate()
+    {
+
+        inputVec = inputVec.normalized * my_speed * Time.fixedDeltaTime;
+
+        my_rigid.MovePosition(my_rigid.position+inputVec);
+
+
+    }
+
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag=="Enemy")
+        {
+            hp = hp - 1;
+            Debug.Log(hp + "³²ÀºÇÇ");
+            if (hp<=0)
+            {
+                Destroy(gameObject);
+               
+               
+
+            }
+
+        }
+        
+    }
+
+
+   
+
+}
