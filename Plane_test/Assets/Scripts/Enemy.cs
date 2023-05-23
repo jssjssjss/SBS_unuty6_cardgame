@@ -9,14 +9,16 @@ public class Enemy : MonoBehaviour
     float ed_time = 2;
     int hp = 3;
 
-    int score = 0;
-
-
+    public GameObject playerobj;
+    public Player playercs;
+    
 
   
     void Start()
     {
+     
         
+      
         
     }
 
@@ -48,8 +50,9 @@ public class Enemy : MonoBehaviour
             hp = hp-1;
             if (hp<=0)
             {
+
                 Destroy (gameObject);
-                score += 100;
+                playercs.score = playercs.score + 100;
             }
 
 

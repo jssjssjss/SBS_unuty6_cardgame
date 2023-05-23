@@ -15,11 +15,12 @@ public class Player : MonoBehaviour
     float st_time = 0;
     float ed_time = 0.2f;
     float bullet_speed = 5;
+    public float score;
     public Text score_text;
-    public Text score;
+    public Text score_num;
 
     Enemy enemy;
-    GameObject enenmy_copy;
+    public GameObject enenmy_copy;
 
    
     int hp = 3;
@@ -30,7 +31,9 @@ public class Player : MonoBehaviour
     {
         
         my_rigid = GetComponent<Rigidbody2D>();
-   
+        score_text.text = "SCORE";
+        score_num.text = score.ToString();
+
     }
 
     // Update is called once per frame
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
             st_time = 0;
         }
 
-        
+        score_num.text = score.ToString();
 
 
 
