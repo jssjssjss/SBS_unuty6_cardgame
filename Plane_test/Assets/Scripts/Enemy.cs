@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public GameObject playerobj;
     public Player playercs;
     
-
+    
   
     void Start()
     {
@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
 
                 Destroy (gameObject);
                 playercs.score = playercs.score + 100;
+                Debug.Log(playercs.score);
             }
 
 

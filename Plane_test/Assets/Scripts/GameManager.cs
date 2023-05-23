@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +12,39 @@ public class GameManager : MonoBehaviour
 
     public GameObject Enemy;
    public GameObject[] sp_pos;
+
     public GameObject enemy_obj;
     Enemy enemycs;
 
     public GameObject playerobj;
     Player playercs;
 
+    public GameObject player_sp;
+    GameObject player_info;
 
+    public Text player_socore;
+    public Text player_text;
+   
 
     void Start()
     {
-        playercs=playerobj.GetComponent<Player>();
-        enemycs=enemy_obj.GetComponent<Enemy>();
+        GameObject player=Instantiate(playerobj,player_sp.transform.position,player_sp.transform.rotation);
         
+        
+        playercs=player.GetComponent<Player>();
+        enemycs=enemy_obj.GetComponent<Enemy>();
+
+        playercs.score_text = player_text;
+        playercs.score_num = player_socore;
+        
+        
+        
+
+        
+
+        
+
+
     }
 
     // Update is called once per frame

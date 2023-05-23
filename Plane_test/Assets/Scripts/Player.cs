@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public Text score_num;
 
     Enemy enemy;
-    public GameObject enenmy_copy;
+   
 
    
     int hp = 3;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         my_rigid = GetComponent<Rigidbody2D>();
         score_text.text = "SCORE";
         score_num.text = score.ToString();
+        
 
     }
 
