@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
 
                 Destroy (gameObject);
                 playercs.score = playercs.score + 100;
-                Debug.Log(playercs.score);
+                //Debug.Log(playercs.score);
             }
 
 
