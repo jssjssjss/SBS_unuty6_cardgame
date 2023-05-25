@@ -44,7 +44,7 @@ public class BOss : MonoBehaviour
         {
             GameObject bossbullet_copy = Instantiate(bossbullet, transform.position, transform.rotation);
             Rigidbody2D bossbullet_rigid = bossbullet_copy.GetComponent<Rigidbody2D>();
-            Debug.Log("¾È³çÇÏ¼Ä´¢");
+            
 
             Vector2 tg = playerobj.transform.position - transform.position;
             tg = tg.normalized;

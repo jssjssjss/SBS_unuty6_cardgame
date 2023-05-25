@@ -7,6 +7,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
+    public GameObject bounobh;
+    Bounceitem bouncs;
+    
+
+    public GameObject camobj;
+    Movecamera camcs;
 
     float st_time = 0;
     float ed_time = 0.2f;
@@ -59,11 +65,12 @@ public class GameManager : MonoBehaviour
         playercs.score_num = player_socore;
 
        
+        camcs=camobj.GetComponent<Movecamera>();
+        camcs.target = player;
 
 
-    
-
-
+        bouncs = bounobh.GetComponent<Bounceitem>();
+        enemycs.bouncs = bouncs;
 
 
 
@@ -75,6 +82,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
 
 
 
@@ -90,11 +100,13 @@ public class GameManager : MonoBehaviour
 
             GameObject Enemy_copy = Instantiate(Enemy, sp_pos[random].transform.position, sp_pos[random].transform.rotation);
             Rigidbody2D enemy_rigid = Enemy.GetComponent<Rigidbody2D>();
+           
+
 
             //enemycs에 있는 playerobj에 Player클래스에서 정보를 받아 게임매니저에 player cs에 저장한것을 enemycs에 저장
             //enemyobj에 있는 playerobj에 Player클래스에서 정보를 받아 게임매니저에 player obj에 저장한것을 enemyobj에 저장
 
-            
+
             enemycs.playercs = playercs;
 
 

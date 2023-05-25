@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerobj: {fileID: 0}
+  playercs: {fileID: 0}
+  particle: {fileID: 100002, guid: fa770d7ca5fd87f4bafe11036ac8be46, type: 3}
 --- !u!70 &4671747839000167804
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

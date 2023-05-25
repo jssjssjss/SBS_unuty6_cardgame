@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
 
     public GameObject playerobj;
     public Player playercs;
-    
-    
-  
+
+    public GameObject bounobh;
+    public Bounceitem bouncs;
+
     void Start()
     {
      
@@ -48,6 +49,9 @@ public class Enemy : MonoBehaviour
         if (collision.transform.tag=="Bullet")
         {
             hp = hp-1;
+
+           
+
             if (hp<=0)
             {
 

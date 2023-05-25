@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Ply_hp
   - xyz
+  - Projectile
+  - Left
   layers:
   - Default
   - TransparentFX

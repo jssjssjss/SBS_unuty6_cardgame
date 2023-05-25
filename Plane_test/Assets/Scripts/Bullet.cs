@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Bullet : MonoBehaviour
 {
+
+    public GameObject particle;
+
 
     float ed_time = 3;
     float st_time = 0;
@@ -37,7 +41,9 @@ public class Bullet : MonoBehaviour
             hp = hp - 1;
                 if (hp==0)
             {
+                Instantiate(particle, collision.transform.position, collision.transform.rotation);
                 Destroy (gameObject);
+                
 
 
             }

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public Text score_num;
 
     Enemy enemy;
+
+    
    
 
    
@@ -85,7 +87,7 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.tag=="Enemy")
         {
-            hp = hp - 1;
+            
             Debug.Log(hp + "³²ÀºÇÇ");
             if (hp<=0)
             {

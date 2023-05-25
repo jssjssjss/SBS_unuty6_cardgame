@@ -124,6 +124,8 @@ MonoBehaviour:
   score: 0
   score_text: {fileID: 0}
   score_num: {fileID: 0}
+  radius: {x: 0, y: 0}
+  cube_size: {x: 0, y: 0}
 --- !u!70 &3873443565288538839
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
