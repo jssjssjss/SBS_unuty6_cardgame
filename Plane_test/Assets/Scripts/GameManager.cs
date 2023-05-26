@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
 
         bouncs = bounobh.GetComponent<Bounceitem>();
-        enemycs.bouncs = bouncs;
+      
 
 
 

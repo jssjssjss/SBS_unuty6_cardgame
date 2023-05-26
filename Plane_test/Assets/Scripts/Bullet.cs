@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag=="Enemy")
+        if(collision.gameObject.tag=="Enemy")
         {
             hp = hp - 1;
                 if (hp==0)

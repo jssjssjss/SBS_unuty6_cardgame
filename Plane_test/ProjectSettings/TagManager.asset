@@ -10,6 +10,7 @@ TagManager:
   - xyz
   - Projectile
   - Left
+  - Item
   layers:
   - Default
   - TransparentFX

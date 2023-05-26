@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour
     public GameObject playerobj;
     public Player playercs;
 
-    public GameObject bounobh;
-    public Bounceitem bouncs;
+    public GameObject item;
+    public Bounceitem bouncecs;
 
     void Start()
     {
@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        
 
 
 
@@ -46,7 +49,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.transform.tag=="Bullet")
+        if (collision.gameObject.tag=="Bullet")
         {
             hp = hp-1;
 
@@ -55,7 +58,14 @@ public class Enemy : MonoBehaviour
             if (hp<=0)
             {
 
-                Destroy (gameObject);
+                int rad = Random.Range(0, 10);
+                if (rad>5)
+                {
+                    Instantiate(item, collision.transform.position, collision.transform.rotation);
+  
+
+                }
+                Destroy(gameObject);
                 playercs.score = playercs.score + 100;
                 //Debug.Log(playercs.score);
             }

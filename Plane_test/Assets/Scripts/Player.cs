@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -75,31 +76,38 @@ public class Player : MonoBehaviour
 
         inputVec = inputVec.normalized * my_speed * Time.fixedDeltaTime;
 
-        my_rigid.MovePosition(my_rigid.position+inputVec);
 
+        transform.position = my_rigid.position + inputVec;
+
+
+        float clampX = Mathf.Clamp(transform.position.x, -7, 7);
+        float clampY = Mathf.Clamp(transform.position.y, -7, 7);
+
+        transform.position=new Vector2 (clampX, clampY);    
+
+
+        
 
     }
+
+    
 
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag=="Enemy")
+       
+
+        if (collision.gameObject.tag=="item")
         {
-            
-            Debug.Log(hp + "³²ÀºÇÇ");
-            if (hp<=0)
-            {
-                Destroy(gameObject);
-               
-               
-
-            }
-
+            Destroy(collision.gameObject);
         }
+       
         
     }
+
+    
 
 
    
