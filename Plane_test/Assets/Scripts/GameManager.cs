@@ -37,8 +37,11 @@ public class GameManager : MonoBehaviour
     
     BOss bosscs;
 
+    GameObject boss;
+
     public GameObject player_sp;
     GameObject player_info;
+    GameObject player;
 
     public Text player_socore;
     public Text player_text;
@@ -55,6 +58,8 @@ public class GameManager : MonoBehaviour
     float max_hp = 100;
     float cur_hp = 100;
 
+    bool isbossInst = false;
+
     Slider boss_hp_slider;
 
     void Start()
@@ -63,16 +68,14 @@ public class GameManager : MonoBehaviour
 
 
 
-        GameObject player = Instantiate(playerobj, player_sp.transform.position, player_sp.transform.rotation);
+        player = Instantiate(playerobj, player_sp.transform.position, player_sp.transform.rotation);
 
 
         playercs =player.GetComponent<Player>();
         enemycs=enemy_obj.GetComponent<Enemy>();
 
 
-        bosscs = boss_obj.GetComponent<BOss>();
-        bosscs.playerobj = player;
-       
+   
 
         playercs.score_text = player_text;
         playercs.score_num = player_socore;
@@ -86,10 +89,10 @@ public class GameManager : MonoBehaviour
         boss_hp_slider=boss_hpbar_obj.GetComponent<Slider>();
 
 
-        bosscs = boss_obj.GetComponent<BOss>();
-       
 
-       
+
+
+        boss_hpbar_obj.SetActive(true);
 
 
     }
@@ -102,27 +105,34 @@ public class GameManager : MonoBehaviour
         
 
         st_time = st_time + Time.deltaTime;
+        if (isboss_sp)
+        {
+            BossSP();
+        }
+
+
         if (st_time > ed_time)
         {
 
-            boss_hp_slider.value = 0;
+            
             spenemy();
+           
+
+        }
+        if (isbossInst)
+        {
+            boss_hp_slider.value = bosscs.cur_boss_hp / bosscs.max_boss_hp;
+            if (bosscs.isbossDead)
+            {
+                boss_hpbar_obj.SetActive(false);
+
+            }
         }
 
-     
-
-      
-
-
-      
 
 
 
-
-        BossSP();
-
-
-
+        
 
 
     }
@@ -130,14 +140,16 @@ public class GameManager : MonoBehaviour
 
     void BossSP()
     {
-        if (playercs.score >= 0 && isboss_sp)
+        if (playercs.score >= 100 && isboss_sp)
         {
 
 
             GameObject boss = Instantiate(boss_obj, boss_sp.transform.position, boss_sp.transform.rotation);
+            Rigidbody2D boss_rigid = boss.GetComponent<Rigidbody2D>();
+            bosscs = boss.GetComponent<BOss>();
+            bosscs.playerobj = player;
 
-            
-
+            isbossInst = true;
             isboss_sp = false;
 
             boss.transform.Rotate(Vector3.back * 180);

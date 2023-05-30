@@ -276,6 +276,8 @@ MonoBehaviour:
   barrels:
   - {fileID: 147003813799005603}
   - {fileID: 676974371420255852}
+  max_boss_hp: 50
+  cur_boss_hp: 0
   bossbullet: {fileID: 432216853662310038, guid: bb5a5a3f9950d0a408ddade1004bde6d, type: 3}
   playerobj: {fileID: 0}
   playercs: {fileID: 0}
