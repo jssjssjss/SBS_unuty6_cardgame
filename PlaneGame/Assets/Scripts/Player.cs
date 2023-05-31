@@ -21,8 +21,14 @@ public class Player : MonoBehaviour
 
     public GameObject bullet;
 
+
+    public ObjectManager obj_manager;
+
+    
+
+    
+
     int hp = 3;
-   
 
     void Start()
     {
@@ -35,20 +41,21 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+
+
+
         cur_delay = cur_delay + Time.deltaTime;
         //움직이는 키가져오기
+
         inputVec.x = Input.GetAxisRaw("Horizontal");
-        if ((hit_leftbox && inputVec.x == 1) || (hit_rightbox && inputVec.x == -1))
+        if ((hit_leftbox && inputVec.x == -1) || (hit_rightbox && inputVec.x == 1))
         {
             inputVec.x = 0;
         }
 
         inputVec.y = Input.GetAxisRaw("Vertical");
-
-       
-
       
-        if ((hit_topbox && inputVec.y==-1)|| (hit_underbox && inputVec.y == 1))
+        if ((hit_topbox && inputVec.y==1)|| (hit_underbox && inputVec.y == -1))
         {
             inputVec.y = 0;
 
@@ -86,11 +93,12 @@ public class Player : MonoBehaviour
             return;
 
 
-             GameObject bullet_info = Instantiate(bullet, transform.position, transform.rotation);
-             Rigidbody2D bullet_rigid = bullet_info.GetComponent<Rigidbody2D>();
-             bullet_rigid.AddForce(Vector2.up * bullet_speed, ForceMode2D.Impulse);
+        GameObject bullet_info = obj_manager.SelectObj("PlayerBullet");
+        bullet_info.transform.position = gameObject.transform.position;
+        Rigidbody2D bullet_rigid = bullet_info.GetComponent<Rigidbody2D>();
+        bullet_rigid.AddForce(Vector2.up * bullet_speed, ForceMode2D.Impulse);
   
-             cur_delay = 0;
+        cur_delay = 0;
 
 
 
@@ -102,9 +110,9 @@ public class Player : MonoBehaviour
     // 충돌처리
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag=="Boundary")
+        if (collision.transform.tag == "Boundary")
         {
-            if (collision.transform.name == "LeftBoundary") 
+            if (collision.transform.name == "LeftBoundary")
             {
                 hit_leftbox = true;
             }
@@ -113,7 +121,7 @@ public class Player : MonoBehaviour
                 hit_rightbox = true;
             }
 
-           else if (collision.transform.name == "TopBoundary")
+            else if (collision.transform.name == "TopBoundary")
             {
                 hit_topbox = true;
 
@@ -123,54 +131,60 @@ public class Player : MonoBehaviour
                 hit_underbox = true;
 
             }
-
         }
 
+
+        else if (collision.transform.tag == "Enemy")
+        {
+           
+           
+
+            collision.gameObject.SetActive(false);
+            if (hp <= 0)
+            {
+               
+                gameObject.SetActive(false);
+
+            }
+
+
+        
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.transform.tag == "Boundary")
         {
-            if (collision.transform.name == "LeftBoundary")
+            switch (collision.transform.name)
             {
-                hit_leftbox = false;
-            }
-            else if (collision.transform.name == "RightBoundary")
-            {
-                hit_rightbox = false;
-            }
+                case "LeftBoundary":
+                    hit_leftbox = false;
+                    break;
 
-            else if (collision.transform.name == "TopBoundary")
-            {
-                hit_topbox = false;
+                case "RightBoundary":
+                    hit_rightbox = false;
+                    break;
 
-            }
-            else if (collision.transform.name == "UnderBoundary")
-            {
-                hit_underbox = false;
+                case "TopBoundary":
+                    hit_topbox = false;
+                    break;
 
-            }
-
-        }
-        else if(collision.transform.tag=="Astroid")
-        {
-            hp = hp - 1;
-
-            Destroy(collision.gameObject);
-            if (hp<=0)
-            {
-                Destroy(gameObject);   
+                case "UnderBoundary":
+                    hit_underbox = false;
+                    break;
 
             }
         }
-
     }
-    
 
 
 
-   
+  
+
+
+
+
 
 
 

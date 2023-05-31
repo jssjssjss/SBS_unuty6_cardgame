@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour
 
     float cur_timer;
     float destroy_timer=7;
-    int hp = 3;
+    public int hp = 10;
     int as_hp = 1;
+    public ObjectManager objectManager;
+    
+
     
     void Start()
     {
@@ -24,7 +27,7 @@ public class Enemy : MonoBehaviour
         if (cur_timer>destroy_timer)
         {
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             cur_timer = 0;
 
         }
@@ -39,33 +42,23 @@ public class Enemy : MonoBehaviour
     {
         if (collision.transform.tag=="PlayerBullet")
         {
-
             hp = hp - 1;
             Debug.Log("총알이 명중했습니다");
-            Destroy(collision.gameObject);
+            GameObject particle = objectManager.SelectObj("ParticleEffect");
+            particle.transform.position = collision.transform.position;
+
+            collision.gameObject.SetActive(false);
            
 
             if(hp<=0)
             {
-                Destroy(gameObject);
+                cur_timer = 0;
+                gameObject.SetActive(false);
             }
 
         }
 
-        if (collision.transform.tag=="Astroid")
-        {
-          as_hp=  as_hp - 1;
-            Destroy(collision.gameObject);
-            if (as_hp<=0)
-            {
-                Destroy(gameObject);
-
-            }
-
-        }
-
-
-
+      
 
         
     }
