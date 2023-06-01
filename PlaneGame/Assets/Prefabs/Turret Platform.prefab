@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3062323808731094486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961370606367946322}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &961370606367946322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062323808731094486}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.028, y: 1.128, z: 0.07193466}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3496049810987286406}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3496049810987286403
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,8 @@ GameObject:
   - component: {fileID: 3496049810987286406}
   - component: {fileID: 3496049810987286405}
   - component: {fileID: 3496049810987286404}
+  - component: {fileID: 6359560074626608748}
+  - component: {fileID: 3029908925692267970}
   m_Layer: 0
   m_Name: Turret Platform
   m_TagString: Untagged
@@ -26,10 +59,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3496049810987286403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.026286364, y: 3.2518008, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 961370606367946322}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 76b0aac3cf1d96c4dbe96461a16846a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,5 +131,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4bb241e70fcd644a7338dffa0a4313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_spawn_pos: {fileID: 0}
-  boss: {fileID: 3496049810987286403}
+  obj_mamager_in_bosscs: {fileID: 0}
+  baller: {fileID: 0}
+--- !u!60 &6359560074626608748
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496049810987286403}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4, y: 2.4}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.75, y: -0.90000004}
+      - {x: 0.45000002, y: -1.1}
+      - {x: -0.4, y: -1.1}
+      - {x: -0.75, y: -0.90000004}
+      - {x: -1.15, y: -1.15}
+      - {x: -0.95, y: -0.75}
+      - {x: -1.1, y: -0.5}
+      - {x: -1.15, y: -0.3}
+      - {x: -1.1, y: 0.4}
+      - {x: -0.90000004, y: 0.75}
+      - {x: -1.15, y: 1.0500001}
+      - {x: -1.1, y: 1.15}
+      - {x: -0.8, y: 0.90000004}
+      - {x: -0.55, y: 1.0500001}
+      - {x: -0.3, y: 1.15}
+      - {x: 0.3, y: 1.15}
+      - {x: 0.6, y: 1}
+      - {x: 0.8, y: 0.95}
+      - {x: 1.1, y: 1.15}
+      - {x: 1.15, y: 1.0500001}
+      - {x: 0.95, y: 0.75}
+      - {x: 1.15, y: 0.35}
+      - {x: 1.1, y: -0.5}
+      - {x: 0.90000004, y: -0.8}
+      - {x: 1.15, y: -1.0500001}
+      - {x: 1.15, y: -1.15}
+--- !u!50 &3029908925692267970
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496049810987286403}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

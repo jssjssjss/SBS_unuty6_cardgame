@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour
     public GameObject player_spawn_pos;
     public GameObject astroid;
     float sp_speed;
+
     public GameObject[] spawn_pos;
     float cur_timer = 0;
     float spawn_delay = 1.5f;
+
+
+    //에너미 
      GameObject astroid_info;
     Rigidbody2D[] astroid_rigid;
 
@@ -19,13 +23,28 @@ public class GameManager : MonoBehaviour
 
     Enemy enemycs;
     Player playercs;
+    Boss bosscs;
 
+
+    //플레이어
     public ObjectManager obj_manager_in_gm;
     public GameObject playerobj;
     GameObject player_info;
 
+
+   
+    //보스 소환
     public GameObject boss_spawn_pos;
-    public GameObject boss;
+    public GameObject bossobj;
+
+
+    GameObject boss_info;
+
+    bool isbosssp=true;
+   
+
+ 
+    
 
 
 
@@ -48,7 +67,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-
+        
         
      
 
@@ -60,22 +79,38 @@ public class GameManager : MonoBehaviour
     {
 
 
-        SpawnBoss();
+     
+        
+        
+
+
+
         cur_timer = cur_timer + Time.deltaTime;
         //cur_timer +=Time.deltaTime; // 같은거
 
-     
-            if (cur_timer > spawn_delay)
-            {
-               SpawnEnemy();
-                cur_timer = 0;
-            }
 
+        if (isbosssp)
+        {
+            SpawnBoss();
+            cur_timer=0;
+
+
+        }
+
+
+
+        if (cur_timer > spawn_delay)
+        {
+            SpawnEnemy();
+            cur_timer = 0;
+        }
+
+            
         
       
     }
 
-
+  
     void SpawnEnemy()
     {
         int randnum = Random.Range(0, 4);
@@ -95,14 +130,19 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    
     
 
     void SpawnBoss()
     {
-        GameObject boss_info = Instantiate(boss, boss_spawn_pos.transform.position, boss_spawn_pos.transform.rotation);
-        Rigidbody2D boss_rigid=boss_info.GetComponent<Rigidbody2D>();
+         boss_info = Instantiate(bossobj, boss_spawn_pos.transform.position, boss_spawn_pos.transform.rotation);
 
-
+        bosscs = boss_info.GetComponent<Boss>();
+        bosscs.obj_mamager_in_bosscs = obj_manager_in_gm;
+        
+        isbosssp = false;
+        
     }
 
 

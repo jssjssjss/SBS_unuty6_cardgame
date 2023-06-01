@@ -1,16 +1,12 @@
 fileFormatVersion: 2
-guid: 76b0aac3cf1d96c4dbe96461a16846a8
-labels:
-- SpaceShip
-- Ship
-- Station
+guid: 2864a325b8fd11a46bdc87c41449b0b3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,12 +29,12 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 512
+  textureFormat: 1
+  maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 16
+    filterMode: 0
+    aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
@@ -46,13 +42,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 51, y: 37, z: 48, w: 101}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -66,12 +62,12 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
-  cookieLightType: 1
+  applyGammaDecoding: 0
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -83,10 +79,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,10 +91,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,10 +103,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,35 +115,52 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: images_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 39
+        width: 128
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa3c04a19813f34fb85c3e87eadd4b5
+      internalID: -1005483759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape:
-    - - {x: 15, y: -18}
-      - {x: 9, y: -22}
-      - {x: -8, y: -22}
-      - {x: -15, y: -18}
-      - {x: -23, y: -23}
-      - {x: -19, y: -15}
-      - {x: -22, y: -10}
-      - {x: -23, y: -6}
-      - {x: -22, y: 8}
-      - {x: -18, y: 15}
-      - {x: -23, y: 21}
-      - {x: -22, y: 23}
-      - {x: -16, y: 18}
-      - {x: -11, y: 21}
-      - {x: -6, y: 23}
-      - {x: 6, y: 23}
-      - {x: 12, y: 20}
-      - {x: 16, y: 19}
-      - {x: 22, y: 23}
-      - {x: 23, y: 21}
-      - {x: 19, y: 15}
-      - {x: 23, y: 7}
-      - {x: 22, y: -10}
-      - {x: 18, y: -16}
-      - {x: 23, y: -21}
-      - {x: 23, y: -23}
+    - - {x: 24.5, y: -69.5}
+      - {x: -14.5, y: -69.5}
+      - {x: -40.5, y: -69.5}
+      - {x: -50.5, y: -48.5}
+      - {x: -58.5, y: -41.5}
+      - {x: -58.5, y: -19.5}
+      - {x: -52.5, y: -9.5}
+      - {x: -47.5, y: 9.5}
+      - {x: -34.5, y: 10.5}
+      - {x: -27.5, y: 1.5}
+      - {x: -5.5, y: 1.5}
+      - {x: 3.5, y: 10.5}
+      - {x: 13.5, y: 8.5}
+      - {x: 16.5, y: -9.5}
+      - {x: 23.5, y: -18.5}
+      - {x: 37.5, y: -25.5}
+      - {x: 44.5, y: -41.5}
+      - {x: 58.5, y: -33.5}
+      - {x: 66.5, y: -43.5}
+      - {x: 56.5, y: -54.5}
+      - {x: 39.5, y: -58.5}
+      - {x: 35.5, y: -71.5}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 1537655665
@@ -156,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      images_0: -1005483759
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

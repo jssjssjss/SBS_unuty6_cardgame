@@ -8,6 +8,7 @@ TagManager:
   - Boundary
   - Astroid
   - Enemy
+  - Back
   layers:
   - Default
   - TransparentFX
