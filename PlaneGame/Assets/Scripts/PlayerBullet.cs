@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     float cur_timer;
-    float destroy_timer = 3;
+    float destroy_timer = 5;
    
     
 

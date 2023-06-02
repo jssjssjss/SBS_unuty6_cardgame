@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,7 +33,12 @@ public class GameManager : MonoBehaviour
     GameObject player_info;
 
 
-   
+    //보스불hp
+    Slider boss_hp_slider;
+    public GameObject boss_hp_obj;
+
+
+
     //보스 소환
     public GameObject boss_spawn_pos;
     public GameObject bossobj;
@@ -41,9 +47,9 @@ public class GameManager : MonoBehaviour
     GameObject boss_info;
 
     bool isbosssp=true;
-   
+    bool isbossInst = false;
 
- 
+    float cur_hp=10;
     
 
 
@@ -55,17 +61,22 @@ public class GameManager : MonoBehaviour
         player_info=Instantiate(playerobj, player_spawn_pos.transform.position, player_spawn_pos.transform.rotation);
         playercs = player_info.GetComponent<Player>();
 
+
+
+
         //여기에 있는 obj_manager를 playercs.obj_manager에 넣는다.
         playercs.obj_manager= obj_manager_in_gm;
-
-
-        
 
 
     }
 
     void Start()
     {
+
+
+        boss_hp_slider = boss_hp_obj.GetComponent<Slider>();
+        
+        
 
         
         
@@ -79,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
 
 
+        
+
      
         
         
@@ -89,7 +102,7 @@ public class GameManager : MonoBehaviour
         //cur_timer +=Time.deltaTime; // 같은거
 
 
-        if (isbosssp)
+        if ((cur_timer>spawn_delay)&&isbosssp)
         {
             SpawnBoss();
             cur_timer=0;
@@ -105,6 +118,14 @@ public class GameManager : MonoBehaviour
             cur_timer = 0;
         }
 
+        if (isbossInst)
+        {
+
+
+            boss_hp_slider.value = bosscs.boss_hp_cur / bosscs.boss_hp_max;
+            
+
+        }
             
         
       
@@ -140,9 +161,16 @@ public class GameManager : MonoBehaviour
 
         bosscs = boss_info.GetComponent<Boss>();
         bosscs.obj_mamager_in_bosscs = obj_manager_in_gm;
+
+
         
         isbosssp = false;
-        
+        isbossInst = true;
+
+        bosscs.player = player_info;
+
+       
+
     }
 
 
