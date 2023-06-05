@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -19,10 +20,16 @@ public class GameManager : MonoBehaviour
      GameObject astroid_info;
     Rigidbody2D[] astroid_rigid;
 
-    
+
+
+    //텍스트
+    public Text score_text;
+    public GameObject gameover_obj;
+    public Text gameover_text;
 
 
     Enemy enemycs;
+    Player player_in_gm;
     Player playercs;
     Boss bosscs;
 
@@ -37,6 +44,10 @@ public class GameManager : MonoBehaviour
     Slider boss_hp_slider;
     public GameObject boss_hp_obj;
 
+    //플레이어 hp
+    Slider player_hp_slider;
+    public GameObject player_hp_obj;
+
 
 
     //보스 소환
@@ -44,7 +55,10 @@ public class GameManager : MonoBehaviour
     public GameObject bossobj;
 
 
+
+    
     GameObject boss_info;
+
 
     bool isbosssp=true;
     bool isbossInst = false;
@@ -59,13 +73,13 @@ public class GameManager : MonoBehaviour
     {
 
         player_info=Instantiate(playerobj, player_spawn_pos.transform.position, player_spawn_pos.transform.rotation);
-        playercs = player_info.GetComponent<Player>();
-
-
-
-
+        player_in_gm = player_info.GetComponent<Player>();
         //여기에 있는 obj_manager를 playercs.obj_manager에 넣는다.
-        playercs.obj_manager= obj_manager_in_gm;
+        player_in_gm.obj_manager= obj_manager_in_gm;
+
+
+        player_hp_slider = player_hp_obj.GetComponent<Slider>();
+
 
 
     }
@@ -74,13 +88,11 @@ public class GameManager : MonoBehaviour
     {
 
 
-        boss_hp_slider = boss_hp_obj.GetComponent<Slider>();
-        
-        
 
-        
-        
-     
+
+        boss_hp_slider = boss_hp_obj.GetComponent<Slider>();
+
+
 
 
     }
@@ -90,16 +102,18 @@ public class GameManager : MonoBehaviour
     {
 
 
-        
-
-     
-        
-        
-
-
 
         cur_timer = cur_timer + Time.deltaTime;
         //cur_timer +=Time.deltaTime; // 같은거
+
+
+        if (player_in_gm.player_cur_hp<=0)
+        {
+            gameover_obj.SetActive(true);
+            gameover_text.text = "!!!!GAME OVER!!!!!";
+            ReStrart();
+           
+        }
 
 
         if ((cur_timer>spawn_delay)&&isbosssp)
@@ -109,6 +123,9 @@ public class GameManager : MonoBehaviour
 
 
         }
+       
+       
+
 
 
 
@@ -118,20 +135,34 @@ public class GameManager : MonoBehaviour
             cur_timer = 0;
         }
 
-        if (isbossInst)
-        {
-
-
-            boss_hp_slider.value = bosscs.boss_hp_cur / bosscs.boss_hp_max;
-            
-
-        }
             
         
       
     }
 
-  
+    private void LateUpdate()
+    {
+        score_text.text = player_in_gm.score.ToString();
+
+
+        if (isbossInst)
+        {
+
+
+            boss_hp_slider.value = bosscs.boss_hp_cur / bosscs.boss_hp_max;
+
+
+        }
+
+        
+        
+            player_hp_slider.value = player_in_gm.player_cur_hp / player_in_gm.player_max_hp;
+
+        
+    }
+
+
+
     void SpawnEnemy()
     {
         int randnum = Random.Range(0, 4);
@@ -143,11 +174,13 @@ public class GameManager : MonoBehaviour
         enemycs.hp = 3;
         enemycs.objectManager = obj_manager_in_gm;
 
+        enemycs.playercs = player_in_gm;
+
 
 
         Rigidbody2D astroid_rigid = enemy_info.GetComponent<Rigidbody2D>();
 
-        astroid_rigid.AddForce(Vector2.down * 7, ForceMode2D.Impulse);
+        astroid_rigid.AddForce(Vector2.down * 4, ForceMode2D.Impulse);
 
 
     }
@@ -173,7 +206,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public void ReStrart()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 
 

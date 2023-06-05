@@ -9,6 +9,7 @@ TagManager:
   - Astroid
   - Enemy
   - Back
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

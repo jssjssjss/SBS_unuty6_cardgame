@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
     public float my_speed = 10;
 
 
-    float bullet_speed = 6.0f;
+    float bullet_speed = 8.0f;
     float fire_delay = 0.2f;
     float cur_delay = 0;
 
@@ -24,15 +25,28 @@ public class Player : MonoBehaviour
 
     public ObjectManager obj_manager;
 
-    
+    public float player_max_hp = 5;
+    public float player_cur_hp;
+
+
+
+
+    public float score = 0;
+
+
+    public bool player_ed = false;
 
     
 
-    int hp = 3;
+  
 
     void Start()
     {
         my_rigid = GetComponent<Rigidbody2D>();
+
+        player_cur_hp = player_max_hp;
+       
+        
 
 
     }
@@ -106,10 +120,14 @@ public class Player : MonoBehaviour
 
 
 
+  
+
 
     // 충돌처리
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
         if (collision.transform.tag == "Boundary")
         {
             if (collision.transform.name == "LeftBoundary")
@@ -134,22 +152,30 @@ public class Player : MonoBehaviour
         }
 
 
-        else if (collision.transform.tag == "Enemy")
+       if (collision.transform.tag == "Enemy")
         {
-           
-           
-
+            Hit(1);
             collision.gameObject.SetActive(false);
-            if (hp <= 0)
-            {
-               
-                gameObject.SetActive(false);
+            player_ed = true;
 
-            }
-
-
-        
         }
+        if (collision.transform.tag=="EnemyBullet")
+        {
+            Hit(1);
+            collision.gameObject.SetActive(false);
+            player_ed = true;
+
+        }
+    }
+    void Hit(float dmg)
+    {
+        player_cur_hp = player_cur_hp - 1;
+        if (player_cur_hp<=0)
+        {
+            gameObject.SetActive(false);
+
+        }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)

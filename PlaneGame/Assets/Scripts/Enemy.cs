@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     public int hp = 10;
     int as_hp = 1;
     public ObjectManager objectManager;
+
+    public Player playercs;
+
     
 
     
@@ -53,6 +56,7 @@ public class Enemy : MonoBehaviour
             if(hp<=0)
             {
                 cur_timer = 0;
+                playercs.score = playercs.score + 100;
                 gameObject.SetActive(false);
             }
 
