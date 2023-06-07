@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameover_obj;
     public Text gameover_text;
 
+    public GameObject game_win_obj;
+    public Text game_win_text;
+
 
     Enemy enemycs;
     Player player_in_gm;
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
 
 
-
+        Time.timeScale = 1;
 
         boss_hp_slider = boss_hp_obj.GetComponent<Slider>();
 
@@ -109,11 +112,29 @@ public class GameManager : MonoBehaviour
 
         if (player_in_gm.player_cur_hp<=0)
         {
+
             gameover_obj.SetActive(true);
+
             gameover_text.text = "!!!!GAME OVER!!!!!";
-            ReStrart();
+            
            
         }
+
+        if (isbossInst)
+        {
+            if (bosscs.boss_hp_cur <= 0)
+            {
+                game_win_obj.SetActive(true);
+                game_win_text.text = "GAME WIn";
+                isbossInst = false;
+                Invoke("StopTime", 1);
+
+
+            }
+
+        }
+
+        
 
 
         if ((cur_timer>spawn_delay)&&isbosssp)
@@ -208,10 +229,21 @@ public class GameManager : MonoBehaviour
 
     public void ReStrart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Stage1");
+        //SceneManager.LoadScene(0);
+
+    }
+
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
 
+    void StopTime()
+    {
+        Time.timeScale = 0;
+    }
 
 
 }

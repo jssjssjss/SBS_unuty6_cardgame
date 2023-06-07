@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     public float score = 0;
 
 
-    public bool player_ed = false;
 
     
 
@@ -156,14 +155,12 @@ public class Player : MonoBehaviour
         {
             Hit(1);
             collision.gameObject.SetActive(false);
-            player_ed = true;
 
         }
         if (collision.transform.tag=="EnemyBullet")
         {
             Hit(1);
             collision.gameObject.SetActive(false);
-            player_ed = true;
 
         }
     }

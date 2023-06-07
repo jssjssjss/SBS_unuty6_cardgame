@@ -32,7 +32,7 @@ public class Boss : MonoBehaviour
     int patten_select = -1;
 
 
-   public float boss_hp_max = 100;
+   public float boss_hp_max = 10;
     public float boss_hp_cur;
    
 
@@ -48,6 +48,10 @@ public class Boss : MonoBehaviour
 
         boss_rigid = GetComponent<Rigidbody2D>();
         Invoke("Patten", 3);
+
+
+
+        
 
 
     }
@@ -196,6 +200,11 @@ public class Boss : MonoBehaviour
         if (collision.transform.tag=="PlayerBullet")
         {
             boss_hp_cur = boss_hp_cur - 1;
+
+            GameObject particle_info=obj_mamager_in_bosscs.SelectObj("ParticleEffect");
+            particle_info.transform.position = collision.transform.position;
+
+            
 
             if (boss_hp_cur==0)
             {

@@ -133,6 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj_mamager_in_bosscs: {fileID: 0}
   baller: {fileID: 3062323808731094486}
+  player: {fileID: 0}
+  boss_hp_max: 20
+  boss_hp_cur: 20
 --- !u!60 &6359560074626608748
 PolygonCollider2D:
   m_ObjectHideFlags: 0
